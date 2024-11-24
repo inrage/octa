@@ -1,0 +1,10 @@
+@import "tailwindcss/utilities";
+
+* {
+  border: 0 solid #e5e7eb;
+}
+
+.wp-block-image.size-full {
+  width: auto;
+  height: auto;
+}

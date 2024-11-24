@@ -1,0 +1,108 @@
+{
+    "name": "inrage/octa",
+    "description": "WordPress boilerplate with Composer, Bud, WordPress blocks composition, and an improved folder structure",
+    "type": "project",
+    "license": "MIT",
+    "homepage": "https://github.com/inrage/octa",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pascal GAULT",
+            "email": "pascal@inrage.fr",
+            "homepage": "https://www.inrage.fr"
+        }
+    ],
+    "keywords": [
+        "octa",
+        "wordpress",
+        "composer",
+        "roots",
+        "bedrock",
+        "sage",
+        "acorn",
+        "bud",
+        "blocks",
+        "gutenberg",
+        "wpackagist"
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.3",
+        "blade-ui-kit/blade-heroicons": "^2.5",
+        "blade-ui-kit/blade-icons": "^1.7",
+        "composer/installers": "^2.2",
+        "log1x/acorn-disable-media-pages": "^1.0",
+        "oscarotero/env": "^2.1",
+        "roots/acorn": "^4.3",
+        "roots/acorn-prettify": "^1.0",
+        "roots/bedrock-autoloader": "^1.0",
+        "roots/bedrock-disallow-indexing": "^2.0",
+        "roots/wordpress": "6.7.1",
+        "roots/wp-config": "1.0.0",
+        "roots/wp-password-bcrypt": "1.2.0",
+        "vlucas/phpdotenv": "^5.5",
+        "wpackagist-plugin/redis-cache": "^2.5",
+        "wpackagist-plugin/safe-svg": "^2.2"
+    },
+    "require-dev": {
+        "johnbillion/query-monitor": "^3.16",
+        "laravel/pint": "^1.18",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "roave/security-advisories": "dev-latest",
+        "spatie/laravel-ignition": "^2.8",
+        "squizlabs/php_codesniffer": "^3.7.1"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "platform": {
+            "php": "8.3"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
+        }
+    },
+    "prefer-stable": true,
+    "extra": {
+        "acorn": {
+            "providers": [
+                "App\\Providers\\AssetsServiceProvider",
+                "App\\Providers\\BlockAssetsServiceProvider",
+                "App\\Providers\\ThemeServiceProvider"
+            ]
+        },
+        "installer-paths": {
+            "public/content/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "public/content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "public/content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "public/wp"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+# Plugins
+public/content/plugins/*
+!public/content/plugins/.gitkeep
+public/content/mu-plugins/*/
+
+# Content & WordPress
+public/content/upgrade
+!public/content/upgrade/.gitkeep
+public/content/uploads/*
+!public/content/uploads/.gitkeep
+public/content/cache/*
+public/wp
+public/.htaccess
+
+# Dotenv
+.env.*
+
+# Composer & NPM
+/vendor
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Build
+public/dist/*
+
