@@ -6,7 +6,6 @@ use Roots\Acorn\Sage\SageServiceProvider;
 
 use function Roots\bundle;
 
-
 class AssetsServiceProvider extends SageServiceProvider
 {
     public function register(): void

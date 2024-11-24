@@ -39,7 +39,7 @@ class PostComposer extends Composer
 
         if (is_search()) {
             return sprintf(
-            /* translators: %s is replaced with the search query */
+                /* translators: %s is replaced with the search query */
                 __('Search Results for %s', 'octa'),
                 get_search_query()
             );
