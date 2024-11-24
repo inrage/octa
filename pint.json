@@ -1,0 +1,13 @@
+{
+  "preset": "psr12",
+  "exclude": [
+    "public/wp",
+    "public/content/plugins",
+    "public/content/mu-plugins/bedrock-disallow-indexing",
+    "public/content/languages",
+    "public/content/wp-rocket-config",
+    "public/content/advanced-cache.php",
+    "public/content/object-cache.php",
+    "public/content/uploads"
+  ]
+}
