@@ -32,7 +32,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@types/wordpress__block-editor": "11.5.15",
     "@types/wordpress__blocks": "12.5.14",
-    "typescript": "5.5.4"
+    "typescript": "5.7.2"
   },
   "dependencies": {
     "@roots/wordpress-hmr": "6.23.3"
