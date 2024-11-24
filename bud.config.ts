@@ -25,7 +25,9 @@ export default async (bud: Bud) => {
     return combinedEntries;
   };
 
-  bud.proxy(`http://127.0.0.1:8000`).serve(`http://localhost:3000`);
+  bud
+    .proxy(bud.env.get('WP_HOME'))
+    .serve(`http://localhost:3000`);
 
   bud
     .watch([bud.path(`resources/views`), bud.path(`app`)])
