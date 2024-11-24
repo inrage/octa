@@ -1,0 +1,5 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile

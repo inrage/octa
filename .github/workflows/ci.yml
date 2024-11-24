@@ -9,8 +9,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint
+  php:
+    name: Lint PHP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,3 +44,29 @@ jobs:
 
       - name: Execute the Composer lint script
         run: composer run-script lint
+
+  node:
+    name: Test Bud Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout the project
+        uses: actions/checkout@v4
+
+      - name: Setup Node environment on ${{ runner.os }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies using Yarn
+        run: yarn install --frozen-lockfile
+
+      - name: Build and compile assets
+        run: |
+          yarn build
+          cat public/dist/entrypoints.json
+          cat public/dist/manifest.json
+          cat public/dist/theme.json

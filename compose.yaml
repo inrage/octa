@@ -1,0 +1,52 @@
+services:
+  database:
+    image: wodby/mariadb:11.4-3.30.1
+    container_name: ${PROJECT_NAME}_database
+    stop_grace_period: 30s
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+    networks:
+      - internal_network
+    #volumes:
+    # - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+    # - /path/to/mariadb/data/on/host:/var/lib/mysql # I want to manage volumes manually.
+  wordpress:
+    image: wodby/wordpress-php:8.3-dev-macos
+    container_name: ${PROJECT_NAME}_wordpress
+    environment:
+      PHP_SENDMAIL_PATH: "/usr/sbin/ssmtp -t"
+      #SSMTP_MAILHUB: host.docker.internal:1025
+      SSMTP_MAILHUB: mailer:1025
+    networks:
+      - internal_network
+  frontend:
+    image: wodby/nginx
+    container_name: ${PROJECT_NAME}_frontend
+    networks:
+      - proxy
+      - internal_network
+    depends_on:
+      - wordpress
+    ports:
+      - "8000:80"
+    environment:
+      NGINX_STATIC_OPEN_FILE_CACHE: "off"
+      NGINX_ERROR_LOG_LEVEL: debug
+      NGINX_BACKEND_HOST: wordpress
+      NGINX_VHOST_PRESET: wordpress
+    volumes:
+      - ${PWD}:/var/www/html
+    #labels:
+    #  - "traefik.enable=true"
+    #  - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${PROJECT_NAME}.aki.dev`)"
+    #  - "traefik.http.routers.${PROJECT_NAME}.tls=true"
+    #  - "traefik.http.routers.${PROJECT_NAME}.tls.certresolver=cloudflare"
+       
+networks:
+  internal_network:
+  proxy:
+    external: true
+
