@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e97c2a0302933dee189e2a626720e937",
+    "content-hash": "7e57a07ef61a5d54636464c0bc3adaed",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -2511,6 +2511,57 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2024-05-21T17:37:01+00:00"
+        },
+        {
+            "name": "inrage/acorn-mail",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inrage/acorn-mail.git",
+                "reference": "4c888a34d3b3360e4f1084f18583fec8353d9fb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inrage/acorn-mail/zipball/4c888a34d3b3360e4f1084f18583fec8353d9fb0",
+                "reference": "4c888a34d3b3360e4f1084f18583fec8353d9fb0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "roots/acorn": "^4.0"
+            },
+            "type": "package",
+            "extra": {
+                "acorn": {
+                    "providers": [
+                        "inRage\\AcornMail\\AcornMailServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "inRage\\AcornMail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pascal GAULT",
+                    "email": "pascal@inrage.fr",
+                    "homepage": "https://www.inrage.fr"
+                }
+            ],
+            "description": "Simple WordPress SMTP using Acorn.",
+            "support": {
+                "issues": "https://github.com/inrage/acorn-mail/issues",
+                "source": "https://github.com/inrage/acorn-mail/tree/v1.0.0"
+            },
+            "time": "2024-11-26T13:50:03+00:00"
         },
         {
             "name": "laravel/prompts",

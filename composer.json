@@ -45,6 +45,7 @@
         "blade-ui-kit/blade-heroicons": "^2.5",
         "blade-ui-kit/blade-icons": "^1.7",
         "composer/installers": "^2.2",
+        "inrage/acorn-mail": "^1.0",
         "log1x/acorn-disable-media-pages": "^1.0",
         "oscarotero/env": "^2.1",
         "roots/acorn": "^4.3",
