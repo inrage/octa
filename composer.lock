@@ -6718,16 +6718,16 @@
     "packages-dev": [
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.16.4",
+            "version": "3.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "a876a2f32236123b09b71fe2d79ba2a5a67b0147"
+                "reference": "d4a6e4f5617b52a6033bb8038466ed87c0897e4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/a876a2f32236123b09b71fe2d79ba2a5a67b0147",
-                "reference": "a876a2f32236123b09b71fe2d79ba2a5a67b0147",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/d4a6e4f5617b52a6033bb8038466ed87c0897e4e",
+                "reference": "d4a6e4f5617b52a6033bb8038466ed87c0897e4e",
                 "shasum": ""
             },
             "require": {
@@ -6741,13 +6741,15 @@
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
                 "johnbillion/plugin-infrastructure": "dev-trunk",
-                "lucatume/wp-browser": "3.2.1",
-                "phpcompatibility/phpcompatibility-wp": "2.1.4",
-                "phpstan/phpstan": "1.10.39",
-                "phpstan/phpstan-phpunit": "1.3.15",
+                "johnbillion/wp-compat": "0.3.1",
+                "lucatume/wp-browser": "3.2.3",
+                "phpcompatibility/phpcompatibility-wp": "2.1.5",
+                "phpstan/phpstan": "1.12.11",
+                "phpstan/phpstan-deprecation-rules": "1.2.1",
+                "phpstan/phpstan-phpunit": "1.4.1",
                 "roots/wordpress-core-installer": "1.100.0",
                 "roots/wordpress-full": "*",
-                "squizlabs/php_codesniffer": "3.7.1",
+                "squizlabs/php_codesniffer": "3.11.1",
                 "szepeviktor/phpstan-wordpress": "1.3.5",
                 "wp-coding-standards/wpcs": "2.3.0"
             },
@@ -6773,10 +6775,11 @@
                 }
             ],
             "description": "The Developer Tools panel for WordPress.",
-            "homepage": "https://github.com/johnbillion/query-monitor/",
+            "homepage": "https://querymonitor.com/",
             "support": {
                 "forum": "https://wordpress.org/support/plugin/query-monitor",
                 "issues": "https://github.com/johnbillion/query-monitor/issues",
+                "security": "https://patchstack.com/database/vdp/query-monitor",
                 "source": "https://github.com/johnbillion/query-monitor"
             },
             "funding": [
@@ -6785,7 +6788,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-25T10:21:05+00:00"
+            "time": "2024-11-27T20:26:54+00:00"
         },
         {
             "name": "laravel/pint",
@@ -8228,7 +8231,7 @@
     "platform": {
         "php": ">=8.3"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.3"
     },
