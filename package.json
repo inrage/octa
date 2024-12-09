@@ -24,7 +24,7 @@
     "@roots/bud-eslint": "6.23.3",
     "@roots/bud-preset-wordpress": "6.23.3",
     "@roots/bud-prettier": "6.23.3",
-    "@roots/bud-stylelint": "6.23.3",
+    "@roots/bud-stylelint": "6.24.0",
     "@roots/bud-swc": "6.23.3",
     "@roots/bud-tailwindcss": "6.23.3",
     "@roots/eslint-config": "6.23.3",
