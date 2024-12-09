@@ -1621,10 +1621,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.2.79":
-  version "18.3.12"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.12.tgz#99419f182ccd69151813b7ee24b792fe08774f60"
-  integrity sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==
+"@types/react@*", "@types/react@^18", "@types/react@^18.2.79":
+  version "18.3.14"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.14.tgz#7ce43bbca0e15e1c4f67ad33ea3f83d75aa6756b"
+  integrity sha512-NzahNKvjNhVjuPBQ+2G7WlxstQ+47kXZNHlUvFakDViuIEfGY926GqhMueQFZ7woG+sPiQKlF36XfrIUVSUfFg==
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -1647,12 +1647,12 @@
     "@wordpress/keycodes" "^3.54.0"
     react-autosize-textarea "^7.1.0"
 
-"@types/wordpress__blocks@*", "@types/wordpress__blocks@12.5.15":
-  version "12.5.15"
-  resolved "https://registry.yarnpkg.com/@types/wordpress__blocks/-/wordpress__blocks-12.5.15.tgz#02daf63a0015448b8e498dd3680d33254bebe673"
-  integrity sha512-kJ8kviVTXOld7gjmiY1JnzBQfwtKaRCxifnJ6z7lkcacjtY0H57IiIGTTu/XfhGCzbXXssimpAZyAK3xsLYNnA==
+"@types/wordpress__blocks@*", "@types/wordpress__blocks@12.5.16":
+  version "12.5.16"
+  resolved "https://registry.yarnpkg.com/@types/wordpress__blocks/-/wordpress__blocks-12.5.16.tgz#063e625e69305c47dc0475ddf3d952fe2b71df49"
+  integrity sha512-WA6lsGY/DBR918wxWClG0rhg1o0qByYjfRzsXkQkKbbKb5RoCZV8ZTV5NyUHxaJUSI+PGjAX1DThQJESLWJkKQ==
   dependencies:
-    "@types/react" "*"
+    "@types/react" "^18"
     "@types/wordpress__shortcode" "*"
     "@wordpress/components" "^27.2.0"
     "@wordpress/data" "^9.13.0"
