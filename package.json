@@ -22,7 +22,7 @@
   "devDependencies": {
     "@roots/bud": "6.23.3",
     "@roots/bud-eslint": "6.23.3",
-    "@roots/bud-preset-wordpress": "6.23.3",
+    "@roots/bud-preset-wordpress": "6.24.0",
     "@roots/bud-prettier": "6.23.3",
     "@roots/bud-stylelint": "6.23.3",
     "@roots/bud-swc": "6.23.3",
