@@ -31,7 +31,7 @@
     "@roots/sage": "6.23.3",
     "@tailwindcss/forms": "^0.5.3",
     "@types/wordpress__block-editor": "11.5.15",
-    "@types/wordpress__blocks": "12.5.15",
+    "@types/wordpress__blocks": "12.5.16",
     "typescript": "5.5.4"
   },
   "dependencies": {
