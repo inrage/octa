@@ -1348,14 +1348,6 @@
     tslib "2.7.0"
     webpack "5.95.0"
 
-"@roots/wordpress-hmr@6.23.3":
-  version "6.23.3"
-  resolved "https://registry.yarnpkg.com/@roots/wordpress-hmr/-/wordpress-hmr-6.23.3.tgz#ca0a2b43cd7492b5ea3332308aa11bb595925896"
-  integrity sha512-GoKFC0UW8ETy5lEfLKrMrj5xDRNgV7aq3y6AfF9/3x9PwlfTxr37rwZ0EFHQ6KGNKN8LGaWrsDgFV6t61TraJw==
-  dependencies:
-    react "18.3.1"
-    tslib "2.6.3"
-
 "@roots/wordpress-hmr@6.24.0":
   version "6.24.0"
   resolved "https://registry.yarnpkg.com/@roots/wordpress-hmr/-/wordpress-hmr-6.24.0.tgz#3563e7d63600c90b39e3ae62b8e480bb01581739"
@@ -8133,11 +8125,6 @@ tsconfig-paths@^3.15.0:
     json5 "^1.0.2"
     minimist "^1.2.6"
     strip-bom "^3.0.0"
-
-tslib@2.6.3:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.3.tgz#0438f810ad7a9edcde7a241c3d80db693c8cbfe0"
-  integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
 
 tslib@2.7.0:
   version "2.7.0"
