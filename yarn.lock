@@ -159,6 +159,13 @@
     "@babel/plugin-transform-react-jsx-development" "^7.24.7"
     "@babel/plugin-transform-react-pure-annotations" "^7.24.7"
 
+"@babel/runtime@7.25.7":
+  version "7.25.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.25.7.tgz#7ffb53c37a8f247c8c4d335e89cdf16a2e0d0fb6"
+  integrity sha512-FjoyLe754PMiYsFaN5C94ttGiOmBNYTf6pLr4xXHAT5uctHb092PBszndLDR5XA/jghQvn4n7JMHl7dmTgbm9w==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.8", "@babel/runtime@^7.16.0", "@babel/runtime@^7.18.3", "@babel/runtime@^7.9.2":
   version "7.26.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.0.tgz#8600c2f595f277c60815256418b85356a65173c1"
@@ -1633,10 +1640,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.2.79":
-  version "18.3.12"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.12.tgz#99419f182ccd69151813b7ee24b792fe08774f60"
-  integrity sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==
+"@types/react@*", "@types/react@^18", "@types/react@^18.2.79":
+  version "18.3.18"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.18.tgz#9b382c4cd32e13e463f97df07c2ee3bbcd26904b"
+  integrity sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -1659,21 +1666,16 @@
     "@wordpress/keycodes" "^3.54.0"
     react-autosize-textarea "^7.1.0"
 
-"@types/wordpress__blocks@*", "@types/wordpress__blocks@12.5.15":
-  version "12.5.15"
-  resolved "https://registry.yarnpkg.com/@types/wordpress__blocks/-/wordpress__blocks-12.5.15.tgz#02daf63a0015448b8e498dd3680d33254bebe673"
-  integrity sha512-kJ8kviVTXOld7gjmiY1JnzBQfwtKaRCxifnJ6z7lkcacjtY0H57IiIGTTu/XfhGCzbXXssimpAZyAK3xsLYNnA==
+"@types/wordpress__blocks@*", "@types/wordpress__blocks@12.5.17":
+  version "12.5.17"
+  resolved "https://registry.yarnpkg.com/@types/wordpress__blocks/-/wordpress__blocks-12.5.17.tgz#11e96504b8cdcee78744a28f25c08a042128ece3"
+  integrity sha512-4IyMaHai+g4x3ItG0pVhpct9bpksUDjSgkHSbk7BYGdzYMIJrEPBJcxkIC2og2OTEdJqpSTb6vYiEFdLM/ADcQ==
   dependencies:
-    "@types/react" "*"
-    "@types/wordpress__shortcode" "*"
+    "@types/react" "^18"
     "@wordpress/components" "^27.2.0"
     "@wordpress/data" "^9.13.0"
     "@wordpress/element" "^5.0.0"
-
-"@types/wordpress__shortcode@*":
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/@types/wordpress__shortcode/-/wordpress__shortcode-2.3.6.tgz#6032d1415355a6a4c0a962f4f53934f8cc5a05d8"
-  integrity sha512-H8BVov7QWyLLoxCaI9QyZVC4zTi1mFkZ+eEKiXBCFlaJ0XV8UVfQk+cAetqD5mWOeWv2d4b8uzzyn0TTQ/ep2g==
+    "@wordpress/shortcode" "^4.14.0"
 
 "@types/yargs-parser@*":
   version "21.0.3"
@@ -2161,6 +2163,14 @@
     "@wordpress/i18n" "^4.58.0"
     "@wordpress/keycodes" "^3.58.0"
     memize "^2.1.0"
+
+"@wordpress/shortcode@^4.14.0":
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/shortcode/-/shortcode-4.17.0.tgz#0cf80b3267c2a33442514a8df7686b1ca622aa38"
+  integrity sha512-sNPUmeeK/dxK5z8BWSsk5OqRSf2UzfczpKu3upRn9eIdgG31SCXPgzvps73upIrxZNDCTQVVFhq47KADX8TiUA==
+  dependencies:
+    "@babel/runtime" "7.25.7"
+    memize "^2.0.1"
 
 "@wordpress/undo-manager@^0.18.0":
   version "0.18.0"
@@ -5599,7 +5609,7 @@ memfs@^4.6.0:
     tree-dump "^1.0.1"
     tslib "^2.0.0"
 
-memize@^2.1.0:
+memize@^2.0.1, memize@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/memize/-/memize-2.1.0.tgz#6ddd4717887d94825748149ece00d04cf868ce0d"
   integrity sha512-yywVJy8ctVlN5lNPxsep5urnZ6TTclwPEyigM9M3Bi8vseJBOfqNrGWN/r8NzuIt3PovM323W04blJfGQfQSVg==
