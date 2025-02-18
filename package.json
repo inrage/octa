@@ -35,6 +35,6 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@roots/wordpress-hmr": "6.23.3"
+    "@roots/wordpress-hmr": "6.24.0"
   }
 }
