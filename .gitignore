@@ -11,6 +11,7 @@ public/content/uploads/*
 public/content/cache/*
 public/wp
 public/.htaccess
+public/content/debug.log
 
 # Dotenv
 .env.*
