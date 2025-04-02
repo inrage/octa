@@ -1,14 +1,20 @@
 <?php
 
-if (! function_exists('\Roots\bootloader')) {
-    wp_die(
-        __('You need to install Acorn to use this site.', 'octa'),
-        '',
-        [
-            'link_url' => 'https://roots.io/acorn/docs/installation/',
-            'link_text' => __('Acorn Docs: Installation', 'octa'),
-        ]
-    );
-}
+use Roots\Acorn\Application;
+use Roots\Acorn\Configuration\Exceptions;
+use Roots\Acorn\Configuration\Middleware;
 
-add_action('after_setup_theme', fn () => \Roots\bootloader()->boot(), 0);
+add_action('after_setup_theme', function () {
+    Application::configure()
+        ->withProviders()
+        ->withMiddleware(function (Middleware $middleware) {
+            //
+        })
+        ->withExceptions(function (Exceptions $exceptions) {
+            //
+        })
+        ->withRouting(
+            web: base_path('routes/web.php'),
+        )
+        ->boot();
+}, 0);
