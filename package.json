@@ -10,8 +10,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "pnpm bud build production",
-    "dev": "pnpm bud build development",
+    "build": "vite build",
+    "dev": "vite",
     "translate": "npm run translate:pot && npm run translate:update",
     "translate:pot": "wp i18n make-pot . ./resources/lang/octa.pot --include=\"app,config,resources,public/dist/js\" --domain=\"octa\"",
     "translate:update": "for file in ./resources/lang/*.po; do wp i18n update-po ./resources/lang/octa.pot $file; done",
@@ -20,21 +20,14 @@
     "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
   },
   "devDependencies": {
-    "@roots/bud": "6.24.0",
-    "@roots/bud-eslint": "6.24.0",
-    "@roots/bud-preset-wordpress": "6.24.0",
-    "@roots/bud-prettier": "6.24.0",
-    "@roots/bud-stylelint": "6.24.0",
-    "@roots/bud-swc": "6.24.0",
-    "@roots/bud-tailwindcss": "6.24.0",
-    "@roots/eslint-config": "6.24.0",
-    "@roots/sage": "6.24.0",
     "@tailwindcss/forms": "^0.5.10",
     "@types/wordpress__block-editor": "11.5.15",
     "@types/wordpress__blocks": "12.5.17",
-    "typescript": "5.5.4"
-  },
-  "dependencies": {
-    "@roots/wordpress-hmr": "6.24.0"
+    "typescript": "5.5.4",
+    "@roots/vite-plugin": "^1.0.4",
+    "@tailwindcss/vite": "^4.0.17",
+    "laravel-vite-plugin": "^1.2.0",
+    "tailwindcss": "^4.0.17",
+    "vite": "^6.2.3"
   }
 }

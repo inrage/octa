@@ -1,5 +1,4 @@
 {
-  "extends": ["@roots/bud/config/tsconfig.json"],
   "compilerOptions": {
     "baseUrl": "./resources",
     "outDir": "./public/dist",
@@ -8,18 +7,10 @@
       "@styles": ["styles"]
     },
     "types": [
-      "@roots/bud",
-      "@roots/bud-eslint",
-      "@roots/bud-prettier",
-      "@roots/bud-stylelint",
-      "@roots/bud-swc",
-      "@roots/bud-tailwindcss",
-      "@roots/bud-wordpress-theme-json",
-      "@roots/sage",
       "webpack/module"
     ]
   },
-  "files": ["types/octa.d.ts", "bud.config.ts"],
+  "files": ["types/octa.d.ts", "vite.config.ts"],
   "include": ["resources"],
   "bud": {
     "useCompilerOptions": true

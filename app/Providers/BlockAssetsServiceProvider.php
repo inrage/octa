@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Roots\Acorn\Sage\SageServiceProvider;
 use Symfony\Component\Finder\Finder;
 
-use function Roots\bundle;
-
-class BlockAssetsServiceProvider extends ServiceProvider
+class BlockAssetsServiceProvider extends SageServiceProvider
 {
     public function register(): void
     {
@@ -26,7 +24,7 @@ class BlockAssetsServiceProvider extends ServiceProvider
                         continue;
                     }
                     if (has_block($block, $postContent)) {
-                        bundle("blocks/{$block}")->enqueue();
+                        //bundle("blocks/{$block}")->enqueue();
                     }
                 }
 
@@ -36,7 +34,7 @@ class BlockAssetsServiceProvider extends ServiceProvider
 
         add_action('wpcf7_enqueue_styles', function () {
             if (has_block('inr/wpcf7')) {
-                bundle('components/wpcf7')->enqueue();
+                //bundle('components/wpcf7')->enqueue();
             }
         });
 
@@ -57,7 +55,7 @@ class BlockAssetsServiceProvider extends ServiceProvider
     {
         $typesBlocks = (new Finder())->directories()->in(
             ABSPATH . '../../resources/',
-        )->path('/scripts|styles/')->depth('== 1')->name('blocks');
+        )->path('/js|css/')->depth('== 1')->name('blocks');
         $typesBlocks = (new Finder())->directories()->in(
             iterator_to_array($typesBlocks->getIterator())
         )->depth('0');
@@ -85,7 +83,7 @@ class BlockAssetsServiceProvider extends ServiceProvider
 
             foreach ($block['attrs'] as $attr) {
                 if ($attr === $haystackBlock && isset($block['attrs']['className'])) {
-                    bundle('blocks/custom-class/' . $block['attrs']['className'])->enqueue();
+                    //bundle('blocks/custom-class/' . $block['attrs']['className'])->enqueue();
                 }
             }
 
