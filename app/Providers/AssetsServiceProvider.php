@@ -2,41 +2,53 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Vite;
 use Roots\Acorn\Sage\SageServiceProvider;
-
-use function Roots\bundle;
 
 class AssetsServiceProvider extends SageServiceProvider
 {
     public function register(): void
     {
         add_action('wp_enqueue_scripts', function (): void {
-            bundle('app')->enqueue();
-
             remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
         }, 100);
 
-        add_action('enqueue_block_editor_assets', function (): void {
-            bundle('editor')->enqueue();
-        }, 100);
+        add_filter('block_editor_settings_all', function ($settings) {
+            $style = Vite::asset('resources/css/editor.css');
 
-        /**
-         * Use theme.json from the build directory
-         *
-         * @param  string $path
-         * @param  string $file
-         * @return string
-         */
-        add_filter('theme_file_path', function (string $path, string $file): string {
-            if ($file === 'theme.json') {
-                return public_path() . '/dist/theme.json';
+            $settings['styles'][] = [
+                'css' => "@import url('{$style}')",
+            ];
+
+            return $settings;
+        });
+
+        add_filter('admin_head', function () {
+            if (! get_current_screen()?->is_block_editor()) {
+                return;
             }
 
-            return $path;
+            $dependencies = json_decode(Vite::content('editor.deps.json'));
+
+            foreach ($dependencies as $dependency) {
+                if (! wp_script_is($dependency)) {
+                    wp_enqueue_script($dependency);
+                }
+            }
+
+            echo Vite::withEntryPoints([
+                'resources/js/editor.ts',
+            ])->toHtml();
+        });
+
+        add_filter('theme_file_path', function ($path, $file) {
+            return $file === 'theme.json'
+                ? public_path('build/assets/theme.json')
+                : $path;
         }, 10, 2);
 
         add_filter('wp_theme_json_data_default', function (\WP_Theme_JSON_Data $themeJson): \WP_Theme_JSON_Data {
-            $themeJsonFile = public_path('/dist/theme.json');
+            $themeJsonFile = public_path('/build/assets/theme.json');
             if (!file_exists($themeJsonFile)) {
                 return $themeJson;
             }
@@ -46,8 +58,7 @@ class AssetsServiceProvider extends SageServiceProvider
                 return $themeJson;
             }
 
-            $mergedData = array_merge($themeJson->get_data(), $decodedData);
-            return new \WP_Theme_JSON_Data($mergedData, 'default');
+            return new \WP_Theme_JSON_Data($decodedData, 'default');
         }, 100);
     }
 }

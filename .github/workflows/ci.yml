@@ -74,6 +74,4 @@ jobs:
       - name: Build and compile assets
         run: |
           pnpm build
-          cat public/dist/entrypoints.json
-          cat public/dist/manifest.json
-          cat public/dist/theme.json
+          cat public/build/manifest.json

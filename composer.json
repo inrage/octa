@@ -42,29 +42,28 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.3",
-        "blade-ui-kit/blade-heroicons": "^2.5",
-        "blade-ui-kit/blade-icons": "^1.7",
+        "blade-ui-kit/blade-heroicons": "^2.6",
+        "blade-ui-kit/blade-icons": "^1.8",
         "composer/installers": "^2.2",
         "inrage/acorn-mail": "^1.0",
         "log1x/acorn-disable-media-pages": "^1.0",
         "oscarotero/env": "^2.1",
-        "roots/acorn": "^4.3",
+        "roots/acorn": "^5.0",
         "roots/acorn-prettify": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "6.7.2",
+        "roots/wordpress": "6.8.1",
         "roots/wp-config": "1.0.0",
-        "roots/wp-password-bcrypt": "1.2.0",
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/redis-cache": "^2.5",
-        "wpackagist-plugin/safe-svg": "^2.2"
+        "wpackagist-plugin/safe-svg": "^2.3"
     },
     "require-dev": {
-        "johnbillion/query-monitor": "^3.16",
-        "laravel/pint": "^1.18",
+        "johnbillion/query-monitor": "^3.17",
+        "laravel/pint": "^1.21",
         "phpcompatibility/php-compatibility": "^9.3",
         "roave/security-advisories": "dev-latest",
-        "spatie/laravel-ignition": "^2.8",
+        "spatie/laravel-ignition": "^2.9",
         "squizlabs/php_codesniffer": "^3.7.1"
     },
     "config": {

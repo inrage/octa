@@ -1,0 +1,89 @@
+{
+  "__preprocessed__": "This file is used to build the theme.json file in the `public/build/assets` directory. The built artifact includes Tailwind's colors, fonts, and font sizes.",
+  "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "background": {
+      "backgroundImage": true
+    },
+    "color": {
+      "custom": true,
+      "customDuotone": false,
+      "customGradient": true,
+      "defaultDuotone": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "duotone": [],
+      "text": true,
+      "background": true
+    },
+    "custom": {
+      "spacing": {},
+      "typography": {
+        "font-size": {},
+        "line-height": {}
+      }
+    },
+    "layout": {
+      "contentSize": "1200px"
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true,
+      "units": ["px", "%", "em", "rem", "vw", "vh"],
+      "spacingScale": {
+        "operator": "*",
+        "increment": 2,
+        "unit": "px",
+        "steps": 7
+      }
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "customFontSize": false,
+      "dropCap": false,
+      "textTransform": true,
+      "fontWeight": true
+    },
+    "border": {
+      "radius": true,
+      "color": true
+    }
+  },
+  "styles": {
+    "spacing": {
+      "blockGap": "5rem",
+      "padding": {
+        "left": "1.5rem",
+        "right": "1.5rem"
+      }
+    },
+    "blocks": {
+      "core/columns": {
+        "spacing": {
+          "blockGap": "1.5rem"
+        }
+      },
+      "core/group": {
+        "spacing": {
+          "blockGap": "1.5rem"
+        }
+      }
+    },
+    "elements": {
+      "button": {
+        "border": {
+          "radius": "80px",
+          "color": "var:preset|color|secondary",
+          "width": "1px"
+        },
+        "color": {
+          "background": "var:preset|color|secondary",
+          "text": "var:preset|color|black"
+        }
+      }
+    }
+  }
+}

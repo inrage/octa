@@ -23,5 +23,6 @@ npm-debug.log
 yarn-error.log
 
 # Build
-public/dist/*
+public/build/*
+public/hot
 
