@@ -20,18 +20,18 @@
     "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
   },
   "devDependencies": {
-    "@roots/vite-plugin": "^1.0.4",
+    "@roots/vite-plugin": "^1.0.6",
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/vite": "^4.0.17",
+    "@tailwindcss/vite": "^4.1.11",
     "@types/wordpress__block-editor": "11.5.15",
     "@types/wordpress__blocks": "12.5.17",
-    "laravel-vite-plugin": "^1.2.0",
-    "tailwindcss": "^4.0.17",
+    "laravel-vite-plugin": "^1.3.0",
+    "tailwindcss": "^4.1.11",
     "typescript": "5.5.4",
-    "vite": "^6.2.3"
+    "vite": "^6.3.5"
   },
   "dependencies": {
     "alpinejs": "^3.14.9",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.8"
   }
 }
