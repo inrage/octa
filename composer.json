@@ -54,7 +54,6 @@
         "roots/bedrock-disallow-indexing": "^2.0",
         "roots/wordpress": "6.7.2",
         "roots/wp-config": "1.0.0",
-        "roots/wp-password-bcrypt": "1.2.0",
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/redis-cache": "^2.5",
         "wpackagist-plugin/safe-svg": "^2.3"
