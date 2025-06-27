@@ -25,6 +25,7 @@ export default defineConfig({
       disableTailwindColors: false,
       disableTailwindFonts: false,
       disableTailwindFontSizes: false,
+      baseThemeJsonPath: './theme.json',
     }),
   ],
   resolve: {
