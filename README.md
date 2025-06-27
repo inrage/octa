@@ -13,7 +13,8 @@
 1. Install Node dependencies:
 
 ```bash
-yarn
+pnpm install
+
 ```
 
 2. Install Composer dependencies:
@@ -60,5 +61,5 @@ DB_PASSWORD='database_password'
 ### Start the development server
 
 ```bash
-wp server --port=8000
+docker compose up -d
 ```

@@ -9,7 +9,6 @@ return [
     'debug' => WP_DEBUG && WP_DEBUG_DISPLAY,
 
     'url' => env('APP_URL', home_url()),
-    'frontend_url' => env('WP_HMR_URL', home_url()),
     'asset_url' => env('ASSET_URL'),
 
     'timezone' => env('APP_TIMEZONE') ?: 'UTC',
