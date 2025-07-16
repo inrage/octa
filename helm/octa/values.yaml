@@ -9,7 +9,7 @@ mariadb:
   enabled: true
   url: ""
   auth:
-    user: "octa"
+    username: "octa"
     rootPassword: "!ThisMustBeChanged!"
     password: "!ThisMustBeChanged!"
     database: octa
