@@ -38,6 +38,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest"}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: APACHE_VHOST_DIR
+              value: /var/www/html/public
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
