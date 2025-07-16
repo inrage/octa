@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "alpinejs": "^3.14.9",
-    "swiper": "^11.2.8"
+    "swiper": "^11.2.10"
   }
 }

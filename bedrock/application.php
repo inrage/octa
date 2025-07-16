@@ -13,9 +13,6 @@ use Roots\WPConfig\Config;
 
 use function Env\env;
 
-// USE_ENV_ARRAY + CONVERT_* + STRIP_QUOTES
-Env\Env::$options = 31;
-
 // phpcs:disable
 
 /**
@@ -40,7 +37,7 @@ $env_files = file_exists($root_dir . '/.env.local')
     ? ['.env', '.env.local']
     : ['.env'];
 
-$dotenv = Dotenv\Dotenv::createImmutable($root_dir, $env_files, false);
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir, $env_files, false);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
