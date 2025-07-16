@@ -5,6 +5,16 @@
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1
 
+app:
+  # @schema
+  # enum:
+  # - development
+  # - production
+  # - staging
+  # @schema
+  # Only those three values are accepted
+  env: production
+
 mariadb:
   enabled: true
   url: ""

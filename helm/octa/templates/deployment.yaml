@@ -38,6 +38,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest"}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: WP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: wp-env
             - name: WP_HOME
               valueFrom:
                 configMapKeyRef:
