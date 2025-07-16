@@ -52,7 +52,7 @@
         "roots/acorn-prettify": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "6.8.1",
+        "roots/wordpress": "6.8.2",
         "roots/wp-config": "1.0.0",
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/redis-cache": "^2.5",
