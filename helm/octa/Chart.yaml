@@ -1,0 +1,7 @@
+apiVersion: v2
+name: octa
+icon: https://github.com/inrage/octa/blob/helm-chart/helm/logo.png
+description: A Helm chart for deploying an Octa WordPress project
+type: application
+version: 0.1.0
+appVersion: "1.1.0"
