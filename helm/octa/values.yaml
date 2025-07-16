@@ -56,7 +56,7 @@ service:
   port: 80
 
 ingress:
-  enabled: yes
+  enabled: true
   annotations:
     kubernetes.io/ingress.class: traefik-external 
   host: chart-example.local
