@@ -40,6 +40,10 @@ spec:
           env:
             - name: APACHE_VHOST_DIR
               value: /var/www/html/public
+            - name: WP_HOME
+              value: https://{{ .Values.ingress.host}}
+            - name: WP_SITEURL
+              value: https://{{ .Values.ingress.host}}/wp
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
