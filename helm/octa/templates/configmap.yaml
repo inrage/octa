@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "helm.fullname" . }}
+  labels:
+    {{- include "helm.labels" . | nindent 4 }}
+data:
+  wp-home: "https://{{ .Values.ingress.host }}"
+  wp-siteurl: "https://{{ .Values.ingress.host }}/wp"
+  apache-vhost-dir: "/var/www/html/public"

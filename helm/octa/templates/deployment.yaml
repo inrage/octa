@@ -38,12 +38,21 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest"}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: APACHE_VHOST_DIR
-              value: /var/www/html/public
             - name: WP_HOME
-              value: https://{{ .Values.ingress.host}}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: wp-home
             - name: WP_SITEURL
-              value: https://{{ .Values.ingress.host}}/wp
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: wp-siteurl
+            - name: APACHE_VHOST_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: apache-vhost-dir
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
