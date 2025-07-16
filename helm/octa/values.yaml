@@ -6,14 +6,7 @@
 replicaCount: 1
 
 app:
-  # @schema
-  # enum:
-  # - development
-  # - production
-  # - staging
-  # @schema
-  # Only those three values are accepted
-  env: production
+  env: production # @schema enum:[development, production,staging]
 
 mariadb:
   enabled: true
