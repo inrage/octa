@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "helm.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "helm.selectorLabels" . | nindent 6 }}
@@ -39,6 +37,12 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: database-url
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
