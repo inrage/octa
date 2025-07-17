@@ -9,5 +9,5 @@ data:
   wp-home: "https://{{ .Values.ingress.host }}"
   wp-siteurl: "https://{{ .Values.ingress.host }}/wp"
   apache-vhost-dir: "/var/www/html/public"
-  redis-host: "{{ .Release.Name }}-redis"
+  redis-host: "{{ .Release.Name }}-redis-master"
   
