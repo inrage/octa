@@ -151,6 +151,17 @@
                 }
             }
         },
+        "redis": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
         "replicaCount": {
             "type": "integer"
         },

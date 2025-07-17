@@ -64,11 +64,13 @@ spec:
                 configMapKeyRef:
                   name: {{ include "helm.fullname" . }}
                   key: redis-host
+            {{- if .Values.redis.token }}
             - name: REDIS_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: {{ include "helm.fullname" . }}
                   key: redis-token
+            {{- end }}
             {{- end }}
             - name: DATABASE_URL
               valueFrom:
