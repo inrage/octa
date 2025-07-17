@@ -154,6 +154,17 @@
         "redis": {
             "type": "object",
             "properties": {
+                "architecture": {
+                    "type": "string"
+                },
+                "auth": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
                 "enabled": {
                     "type": "boolean"
                 },
