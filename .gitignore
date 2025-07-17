@@ -28,5 +28,4 @@ public/hot
 
 # Helm
 /helm/octa/charts/*
-!/helm/octa/charts/.gitignore
 
