@@ -25,8 +25,8 @@ redis:
   auth:
     enabled: false
   commonConfiguration: |-
-    maxmemory-policy: allkeys-lru
-    maxmemory: 256mb
+    appendonly no
+    save ""
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
