@@ -1,3 +1,10 @@
 @import "tailwindcss" theme(static);
+
 @source "../views/";
 @source "../../app/";
+
+@theme static {
+  --color-*: initial;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
