@@ -6989,16 +6989,16 @@
     "packages-dev": [
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.18.0",
+            "version": "3.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "08edec4f7bcd45cb92525d6375e9876c11eee1cd"
+                "reference": "dabf626190fa20d8b9f95a8f8131c27a81c9d177"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/08edec4f7bcd45cb92525d6375e9876c11eee1cd",
-                "reference": "08edec4f7bcd45cb92525d6375e9876c11eee1cd",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/dabf626190fa20d8b9f95a8f8131c27a81c9d177",
+                "reference": "dabf626190fa20d8b9f95a8f8131c27a81c9d177",
                 "shasum": ""
             },
             "require": {
@@ -7012,6 +7012,7 @@
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
+                "guzzlehttp/guzzle": "^7.0",
                 "johnbillion/plugin-infrastructure": "dev-trunk",
                 "johnbillion/wp-compat": "0.3.1",
                 "lucatume/wp-browser": "3.2.3",
@@ -7060,7 +7061,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-16T15:28:52+00:00"
+            "time": "2025-07-23T17:19:30+00:00"
         },
         {
             "name": "laravel/pint",
