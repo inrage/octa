@@ -93,14 +93,24 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.volumeMounts }}
           volumeMounts:
+            {{- if .Values.uploads.enabled }}
+            - name: uploads-volume
+              mountPath: {{ .Values.uploads.containerPath }}
+            {{- end }}
+            {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+            {{- end }}
       volumes:
+        {{- if .Values.uploads.enabled }}
+        - name: uploads-volume
+          hostPath:
+            path: {{ .Values.uploads.hostPath }}
+            type: DirectoryOrCreate
+        {{- end }}
+        {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

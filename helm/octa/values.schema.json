@@ -196,6 +196,23 @@
         "tolerations": {
             "type": "array"
         },
+        "uploads": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable uploads volume"
+                },
+                "hostPath": {
+                    "type": "string",
+                    "description": "Host path for uploads"
+                },
+                "containerPath": {
+                    "type": "string",
+                    "description": "Container path for uploads"
+                }
+            }
+        },
         "volumeMounts": {
             "type": "array"
         },

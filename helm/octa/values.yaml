@@ -96,6 +96,14 @@ readinessProbe:
     path: /
     port: http
 
+# Configuration for uploads volume
+uploads:
+  enabled: true
+  # Host path for uploads (default: /data/website)
+  hostPath: /data/website
+  # Container path for uploads
+  containerPath: /var/www/html/public/content/uploads
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
