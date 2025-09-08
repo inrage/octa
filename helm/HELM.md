@@ -56,6 +56,21 @@ The chart now supports configuring a volume for uploads. This allows you to pers
 | `uploads.hostPath` | Host path for uploads | `/data/website` |
 | `uploads.containerPath` | Container path for uploads | `/var/www/html/public/content/uploads` |
 
+### Mail Configuration
+
+The chart supports conditional mail configuration with two modes:
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `mail.mailer` | Mail driver (native or smtps) | `native` |
+| `mail.host` | SMTP host (only for smtps) | `""` |
+| `mail.port` | SMTP port (only for smtps) | `""` |
+| `mail.username` | SMTP username (only for smtps) | `""` |
+| `mail.password` | SMTP password (only for smtps) | `""` |
+| `mail.encryption` | SMTP encryption (only for smtps) | `""` |
+| `mail.fromAddress` | From email address (only for smtps) | `""` |
+| `mail.fromName` | From name (only for smtps) | `""` |
+
 ## Usage Examples
 
 ### Basic Installation
@@ -80,6 +95,24 @@ If you don't need the uploads volume:
 helm install octa ./octa --set uploads.enabled=false
 ```
 
+### Mail Configuration Examples
+
+```bash
+# Default installation (native mail)
+helm install octa ./octa
+
+# SMTP configuration
+helm install octa ./octa \
+  --set mail.mailer=smtps \
+  --set mail.host=smtp.mailjet.com \
+  --set mail.port=587 \
+  --set mail.username=myusername \
+  --set mail.password=mypassword \
+  --set mail.encryption=tls \
+  --set mail.fromAddress=noreply@example.com \
+  --set mail.fromName="My App"
+```
+
 ### Complete Example with Custom Configuration
 
 ```bash
@@ -88,7 +121,10 @@ helm install octa ./octa \
   --set mariadb.auth.password=mySecurePassword \
   --set mariadb.auth.rootPassword=mySecureRootPassword \
   --set uploads.hostPath=/mnt/nfs/website-uploads \
-  --set uploads.containerPath=/var/www/html/public/content/uploads
+  --set uploads.containerPath=/var/www/html/public/content/uploads \
+  --set mail.mailer=smtps \
+  --set mail.host=smtp.mailjet.com \
+  --set mail.port=587
 ```
 
 ## Additional Volumes
