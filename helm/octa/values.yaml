@@ -104,6 +104,18 @@ uploads:
   # Container path for uploads
   containerPath: /var/www/html/public/content/uploads
 
+# Mail configuration
+mail:
+  mailer: "native" # @schema enum:[native, smtps]
+  # SMTP configuration (only used when mailer is "smtps")
+  host: ""
+  port: ""
+  username: ""
+  password: ""
+  encryption: ""
+  fromAddress: ""
+  fromName: ""
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo

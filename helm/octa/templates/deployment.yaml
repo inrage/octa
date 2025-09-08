@@ -77,6 +77,62 @@ spec:
                 secretKeyRef:
                   name: {{ include "helm.fullname" . }}
                   key: database-url
+            - name: MAIL_MAILER
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-mailer
+            {{- if eq .Values.mail.mailer "smtps" }}
+            {{- if .Values.mail.host }}
+            - name: MAIL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-host
+            {{- end }}
+            {{- if .Values.mail.port }}
+            - name: MAIL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-port
+            {{- end }}
+            {{- if .Values.mail.encryption }}
+            - name: MAIL_ENCRYPTION
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-encryption
+            {{- end }}
+            {{- if .Values.mail.fromAddress }}
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-from-address
+            {{- end }}
+            {{- if .Values.mail.fromName }}
+            - name: MAIL_FROM_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-from-name
+            {{- end }}
+            {{- if .Values.mail.username }}
+            - name: MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-username
+            {{- end }}
+            {{- if .Values.mail.password }}
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: mail-password
+            {{- end }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
