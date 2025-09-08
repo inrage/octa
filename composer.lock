@@ -6989,16 +6989,16 @@
     "packages-dev": [
         {
             "name": "johnbillion/query-monitor",
-            "version": "3.18.0",
+            "version": "3.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnbillion/query-monitor.git",
-                "reference": "08edec4f7bcd45cb92525d6375e9876c11eee1cd"
+                "reference": "ec24102fa79ca7f02b3e5d2643284c5a71588c62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/08edec4f7bcd45cb92525d6375e9876c11eee1cd",
-                "reference": "08edec4f7bcd45cb92525d6375e9876c11eee1cd",
+                "url": "https://api.github.com/repos/johnbillion/query-monitor/zipball/ec24102fa79ca7f02b3e5d2643284c5a71588c62",
+                "reference": "ec24102fa79ca7f02b3e5d2643284c5a71588c62",
                 "shasum": ""
             },
             "require": {
@@ -7012,7 +7012,8 @@
                 "codeception/module-webdriver": "^1.0",
                 "codeception/util-universalframework": "^1.0",
                 "dealerdirect/phpcodesniffer-composer-installer": "0.7.2",
-                "johnbillion/plugin-infrastructure": "dev-trunk",
+                "guzzlehttp/guzzle": "^7.0",
+                "johnbillion/plugin-infrastructure": "1.2.1",
                 "johnbillion/wp-compat": "0.3.1",
                 "lucatume/wp-browser": "3.2.3",
                 "phpcompatibility/phpcompatibility-wp": "2.1.5",
@@ -7060,7 +7061,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-16T15:28:52+00:00"
+            "time": "2025-09-07T22:02:10+00:00"
         },
         {
             "name": "laravel/pint",
