@@ -20,7 +20,7 @@
     "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
   },
   "devDependencies": {
-    "@roots/vite-plugin": "^1.0.6",
+    "@roots/vite-plugin": "^1.2.3",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/vite": "^4.1.11",
     "@types/wordpress__block-editor": "11.5.15",
