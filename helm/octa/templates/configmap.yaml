@@ -9,7 +9,7 @@ data:
   wp-home: "https://{{ .Values.ingress.host }}"
   wp-siteurl: "https://{{ .Values.ingress.host }}/wp"
   apache-vhost-dir: "/var/www/html/public"
-  redis-host: "{{ .Release.Name }}-redis-master"
+  valkey-host: "{{ .Release.Name }}-valkey"
   mail-mailer: {{ .Values.mail.mailer | quote }}
   {{- if eq .Values.mail.mailer "smtps" }}
   {{- if .Values.mail.host }}

@@ -37,14 +37,13 @@ The following table lists the configurable parameters of the Octa chart and thei
 | `mariadb.auth.rootPassword` | MariaDB root password | `!ThisMustBeChanged!` |
 | `mariadb.auth.database` | MariaDB database name | `octa` |
 
-### Redis Configuration
+### Valkey Configuration (Redis-compatible)
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `redis.enabled` | Enable Redis | `false` |
-| `redis.token` | Redis token | `""` |
-| `redis.architecture` | Redis architecture | `standalone` |
-| `redis.auth.enabled` | Enable Redis authentication | `false` |
+| `valkey.enabled` | Enable Valkey | `false` |
+| `valkey.token` | Valkey token | `""` |
+| `valkey.auth.enabled` | Enable Valkey authentication | `false` |
 
 ### Uploads Volume Configuration
 

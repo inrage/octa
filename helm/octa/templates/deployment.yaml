@@ -58,18 +58,18 @@ spec:
                 configMapKeyRef:
                   name: {{ include "helm.fullname" . }}
                   key: apache-vhost-dir
-            {{- if .Values.redis.enabled }}
+            {{- if .Values.valkey.enabled }}
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
                   name: {{ include "helm.fullname" . }}
-                  key: redis-host
-            {{- if .Values.redis.token }}
+                  key: valkey-host
+            {{- if .Values.valkey.token }}
             - name: REDIS_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: {{ include "helm.fullname" . }}
-                  key: redis-token
+                  key: valkey-token
             {{- end }}
             {{- end }}
             - name: DATABASE_URL

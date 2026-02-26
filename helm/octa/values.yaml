@@ -18,15 +18,11 @@ mariadb:
     database: octa
     
 
-redis:
+valkey:
   enabled: false
   token: ""
-  architecture: standalone
   auth:
     enabled: false
-  commonConfiguration: |-
-    appendonly no
-    save ""
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
