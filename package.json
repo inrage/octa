@@ -6,7 +6,7 @@
     "extends @roots/browserslist-config"
   ],
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   },
   "type": "module",
   "scripts": {
@@ -35,6 +35,6 @@
     "swiper": "^11.2.10"
   },
   "volta": {
-    "node": "20.20.0"
+    "node": "24.14.0"
   }
 }
