@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "helm.fullname" . }}
+  labels:
+    {{- include "helm.labels" . | nindent 4 }}
+data:
+  wp-env: {{ .Values.app.environment | quote }}
+  wp-home: "https://{{ .Values.ingress.host }}"
+  wp-siteurl: "https://{{ .Values.ingress.host }}/wp"
+  apache-vhost-dir: "/var/www/html/public"
+  valkey-host: "{{ .Release.Name }}-valkey"
+  mail-mailer: {{ .Values.mail.mailer | quote }}
+  {{- if eq .Values.mail.mailer "smtps" }}
+  {{- if .Values.mail.host }}
+  mail-host: {{ .Values.mail.host | quote }}
+  {{- end }}
+  {{- if .Values.mail.port }}
+  mail-port: {{ .Values.mail.port | quote }}
+  {{- end }}
+  {{- if .Values.mail.encryption }}
+  mail-encryption: {{ .Values.mail.encryption | quote }}
+  {{- end }}
+  {{- if .Values.mail.fromAddress }}
+  mail-from-address: {{ .Values.mail.fromAddress | quote }}
+  {{- end }}
+  {{- if .Values.mail.fromName }}
+  mail-from-name: {{ .Values.mail.fromName | quote }}
+  {{- end }}
+  {{- end }}
+  

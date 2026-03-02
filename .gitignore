@@ -25,3 +25,6 @@ yarn-error.log
 public/build/*
 public/hot
 
+# Helm
+/helm/octa/charts/*
+
