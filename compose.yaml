@@ -14,7 +14,7 @@ services:
     # - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
     # - /path/to/mariadb/data/on/host:/var/lib/mysql # I want to manage volumes manually.
   wordpress:
-    image: wodby/wordpress-php:8.3-dev-macos
+    image: wodby/wordpress-php:8.4-dev-macos
     container_name: ${PROJECT_NAME}_wordpress
     environment:
       PHP_SENDMAIL_PATH: "/usr/sbin/ssmtp -t"

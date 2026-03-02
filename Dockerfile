@@ -1,6 +1,6 @@
 # Base images
-FROM inrage/docker-wordpress:8.3-redis AS base-php
-FROM node:20-alpine AS base-node
+FROM inrage/docker-wordpress:8.4-redis AS base-php
+FROM node:24-alpine AS base-node
 FROM composer:2.8 AS php-deps
 
 # Node dependencies
