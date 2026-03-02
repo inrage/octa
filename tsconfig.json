@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "baseUrl": "./resources",
-    "outDir": "./public/dist",
+    "outDir": "./public/build",
     "paths": {
-      "@scripts": ["scripts"],
-      "@styles": ["styles"]
+      "@scripts/*": ["js/*"],
+      "@styles/*": ["css/*"],
+      "@fonts/*": ["fonts/*"],
+      "@images/*": ["images/*"]
     },
-    "types": [
-      "webpack/module"
-    ],
-    "jsx": "react"
+    "jsx": "react",
+    "strict": true,
+    "skipLibCheck": true
   },
   "files": ["types/octa.d.ts", "vite.config.ts"],
-  "include": ["resources"],
-  "bud": {
-    "useCompilerOptions": true
-  }
+  "include": ["resources"]
 }
