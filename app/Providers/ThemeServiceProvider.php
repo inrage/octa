@@ -10,6 +10,11 @@ class ThemeServiceProvider extends SageServiceProvider
     public function register(): void
     {
         parent::register();
+    }
+
+    public function boot(): void
+    {
+        parent::boot();
 
         add_action('after_setup_theme', function (): void {
             Collection::make(config('theme.support'))
@@ -25,10 +30,5 @@ class ThemeServiceProvider extends SageServiceProvider
             Collection::make(config('theme.image_sizes'))
                 ->each(fn ($params, $name) => add_image_size($name, ...$params));
         }, 20);
-    }
-
-    public function boot()
-    {
-        parent::boot();
     }
 }
