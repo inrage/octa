@@ -41,7 +41,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.4",
         "blade-ui-kit/blade-heroicons": "^2.6",
         "blade-ui-kit/blade-icons": "^1.8",
         "composer/installers": "^2.2",
@@ -71,7 +71,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.3"
+            "php": "8.4"
         },
         "allow-plugins": {
             "composer/installers": true,
