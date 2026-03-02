@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "alpinejs": "^3.15.8",
-    "swiper": "^11.2.10"
+    "swiper": "^12.1.2"
   },
   "volta": {
     "node": "24.14.0"
