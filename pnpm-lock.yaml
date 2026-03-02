@@ -14,8 +14,8 @@ importers:
         specifier: ^3.15.8
         version: 3.15.8
       swiper:
-        specifier: ^11.2.10
-        version: 11.2.10
+        specifier: ^12.1.2
+        version: 12.1.2
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -1761,8 +1761,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swiper@11.2.10:
-    resolution: {integrity: sha512-RMeVUUjTQH+6N3ckimK93oxz6Sn5la4aDlgPzB+rBrG/smPdCTicXyhxa+woIpopz+jewEloiEE3lKo1h9w2YQ==}
+  swiper@12.1.2:
+    resolution: {integrity: sha512-4gILrI3vXZqoZh71I1PALqukCFgk+gpOwe1tOvz5uE9kHtl2gTDzmYflYCwWvR4LOvCrJi6UEEU+gnuW5BtkgQ==}
     engines: {node: '>= 4.7.0'}
 
   tailwindcss@4.2.1:
@@ -3799,7 +3799,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swiper@11.2.10: {}
+  swiper@12.1.2: {}
 
   tailwindcss@4.2.1: {}
 
