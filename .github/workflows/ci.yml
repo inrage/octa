@@ -71,6 +71,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --public-hoist-pattern=\* --frozen-lockfile
 
+      - name: Lint JS/TS
+        run: pnpm lint
+
       - name: Build and compile assets
         run: |
           pnpm build
