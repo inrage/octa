@@ -57,6 +57,10 @@ define('ACORN_BASEPATH', $root_dir);
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
+if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['local', 'development', 'staging', 'production'])) {
+    Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+}
+
 /**
  * URLs
  */
