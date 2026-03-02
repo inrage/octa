@@ -10,7 +10,6 @@ public/content/uploads/*
 !public/content/uploads/.gitkeep
 public/content/cache/*
 public/wp
-public/.htaccess
 public/content/debug.log
 
 # Dotenv

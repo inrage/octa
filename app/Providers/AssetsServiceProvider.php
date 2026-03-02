@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Vite;
-use Roots\Acorn\Sage\SageServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class AssetsServiceProvider extends SageServiceProvider
+class AssetsServiceProvider extends ServiceProvider
 {
-    public function register(): void
+    public function boot(): void
     {
         add_action('wp_enqueue_scripts', function (): void {
             remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');

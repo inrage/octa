@@ -41,7 +41,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.4",
         "blade-ui-kit/blade-heroicons": "^2.6",
         "blade-ui-kit/blade-icons": "^1.8",
         "composer/installers": "^2.2",
@@ -52,7 +52,7 @@
         "roots/acorn-prettify": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "6.8.1",
+        "roots/wordpress": "6.9.1",
         "roots/wp-config": "1.0.0",
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/redis-cache": "^2.5",
@@ -71,7 +71,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.3"
+            "php": "8.4"
         },
         "allow-plugins": {
             "composer/installers": true,

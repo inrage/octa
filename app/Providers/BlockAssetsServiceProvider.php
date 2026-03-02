@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Roots\Acorn\Sage\SageServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Finder\Finder;
 
-class BlockAssetsServiceProvider extends SageServiceProvider
+class BlockAssetsServiceProvider extends ServiceProvider
 {
-    public function register(): void
+    public function boot(): void
     {
         $availableBlocks = $this->getAvailableBlocks();
 
