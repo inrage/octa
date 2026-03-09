@@ -29,7 +29,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "@types/wordpress__block-editor": "11.5.15",
     "@types/wordpress__blocks": "12.5.17",
-    "eslint": "^10.0.2",
+    "eslint": "^10.0.3",
     "laravel-vite-plugin": "^2.1.0",
     "tailwindcss": "^4.2.1",
     "typescript": "5.5.4",
