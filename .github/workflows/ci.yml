@@ -12,6 +12,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  helm:
+    name: Check Helm appVersion
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Compare appVersion with latest release tag
+        run: |
+          latest=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+          app_version=$(sed -n 's/^appVersion: *"\{0,1\}\([^"]*\)"\{0,1\}$/\1/p' helm/octa/Chart.yaml)
+          echo "Latest tag: ${latest:-none}, Chart appVersion: ${app_version}"
+          if [ -n "$latest" ] && [ "${latest#v}" != "$app_version" ]; then
+            echo "::error file=helm/octa/Chart.yaml::appVersion ${app_version} does not match latest release ${latest}. Bump appVersion and the chart version."
+            exit 1
+          fi
+
   php:
     name: Lint PHP
     runs-on: ubuntu-latest
