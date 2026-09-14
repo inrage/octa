@@ -30,7 +30,5 @@ class ThemeServiceProvider extends SageServiceProvider
             Collection::make(config('theme.image_sizes'))
                 ->each(fn ($params, $name) => add_image_size($name, ...$params));
         }, 20);
-
-        add_filter('should_load_separate_core_block_assets', '__return_false');
     }
 }
