@@ -15,6 +15,7 @@ export default defineConfig({
         "resources/js/editor.ts",
       ],
       refresh: true,
+      assets: ["resources/images/**", "resources/fonts/**"],
     }),
 
     wordpressPlugin(),
@@ -25,6 +26,7 @@ export default defineConfig({
       disableTailwindColors: false,
       disableTailwindFonts: false,
       disableTailwindFontSizes: false,
+      disableTailwindBorderRadius: false,
       baseThemeJsonPath: './theme.json',
     }),
   ],

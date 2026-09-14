@@ -6,14 +6,15 @@ FROM composer:2.8 AS php-deps
 # Node dependencies
 FROM base-node AS node-deps
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --non-interactive
+RUN corepack enable && corepack prepare pnpm@10 --activate
+COPY package.json pnpm-lock.yaml .pnpmfile.cjs ./
+RUN pnpm install --public-hoist-pattern=\* --frozen-lockfile
 
 # Node build
 FROM node-deps AS node-builder
 WORKDIR /app
 COPY . .
-RUN yarn build --no-browserslist-update
+RUN pnpm build
 
 # PHP dependencies
 FROM php-deps AS php-deps-install
@@ -28,7 +29,7 @@ RUN --mount=type=secret,id=COMPOSER_AUTH_JSON,target=${COMPOSER_HOME}/auth.json 
 FROM base-php
 WORKDIR /var/www/html
 COPY --chown=inr:inr . .
-COPY --chown=inr --from=node-builder /app/public/dist ./public/dist
+COPY --chown=inr --from=node-builder /app/public/build ./public/build
 COPY --chown=inr --from=php-deps-install /app/vendor ./vendor
 COPY --chown=inr --from=php-deps-install /app/public/wp ./public/wp
 COPY --chown=inr --from=php-deps-install /app/public/content/plugins ./public/content/plugins

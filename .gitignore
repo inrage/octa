@@ -28,3 +28,6 @@ public/hot
 # Helm
 /helm/octa/charts/*
 
+
+# Composer auth
+auth.json

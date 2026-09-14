@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Octa</strong> — A modern WordPress boilerplate built on Bedrock, Sage/Acorn 5, Vite, Tailwind CSS 4 and Alpine.js
+  <strong>Octa</strong> — A modern WordPress boilerplate built on Bedrock, Sage/Acorn 6, Vite, Tailwind CSS 4 and Alpine.js
 </p>
 
 <p align="center">
@@ -17,11 +17,11 @@
 
 | Layer | Technology |
 |-------|-----------|
-| CMS | WordPress 6.9 (Composer-managed) |
-| PHP Framework | Acorn 5 (Laravel-style) |
+| CMS | WordPress 7.1 (Composer-managed) |
+| PHP Framework | Acorn 6 (Laravel 13) |
 | Structure | Bedrock |
 | Templating | Blade |
-| Bundler | Vite 7 |
+| Bundler | Vite 8 |
 | CSS | Tailwind CSS 4 |
 | JS | Alpine.js 3, TypeScript |
 | Docker | MariaDB 11.4, PHP-FPM 8.4, Nginx |

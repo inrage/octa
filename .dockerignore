@@ -1,0 +1,17 @@
+.git
+.github
+.idea
+.claude
+helm
+node_modules
+vendor
+public/build
+public/wp
+public/content/plugins
+public/content/uploads
+storage/framework/cache/*.php
+storage/framework/views/*.php
+storage/logs/*.log
+auth.json
+tasks
+.gstack
