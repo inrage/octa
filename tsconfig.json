@@ -3,13 +3,12 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "baseUrl": "./resources",
     "outDir": "./public/build",
     "paths": {
-      "@scripts/*": ["js/*"],
-      "@styles/*": ["css/*"],
-      "@fonts/*": ["fonts/*"],
-      "@images/*": ["images/*"]
+      "@scripts/*": ["./resources/js/*"],
+      "@styles/*": ["./resources/css/*"],
+      "@fonts/*": ["./resources/fonts/*"],
+      "@images/*": ["./resources/images/*"]
     },
     "jsx": "react",
     "strict": true,
