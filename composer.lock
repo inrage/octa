@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3138ee1c0b3a7cb4c3c9b69aa61d9536",
+    "content-hash": "67afbde6f65e997b2e4933d9e8c7384f",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -7322,15 +7322,15 @@
         },
         {
             "name": "wpackagist-plugin/redis-cache",
-            "version": "2.8.0",
+            "version": "3.0.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redis-cache/",
-                "reference": "tags/2.8.0"
+                "reference": "tags/3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redis-cache.2.8.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/redis-cache.3.0.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

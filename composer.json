@@ -56,7 +56,7 @@
         "roots/wordpress-core-installer": "^4.0",
         "roots/wp-config": "1.0.0",
         "vlucas/phpdotenv": "^5.5",
-        "wpackagist-plugin/redis-cache": "^2.5",
+        "wpackagist-plugin/redis-cache": "^3.0",
         "wpackagist-plugin/safe-svg": "^2.3"
     },
     "require-dev": {
