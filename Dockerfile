@@ -6,8 +6,8 @@ FROM composer:2.8 AS php-deps
 # Node dependencies
 FROM base-node AS node-deps
 WORKDIR /app
-RUN corepack enable && corepack prepare pnpm@10 --activate
-COPY package.json pnpm-lock.yaml .pnpmfile.cjs ./
+RUN corepack enable
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --public-hoist-pattern=\* --frozen-lockfile
 
 # Node build
