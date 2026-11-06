@@ -179,6 +179,22 @@ Environment variables are loaded from `.env` (and `.env.local` override) via Dot
 
 All plugins are managed via Composer (`wpackagist-plugin/*`) and installed to `public/content/plugins/`. Never install plugins manually.
 
+### Object Cache
+
+A persistent object cache is optional and driven by environment variables in `bedrock/application.php`:
+
+| Environment | Result |
+|-------------|--------|
+| no `REDIS_HOST` | Object cache disabled (`WP_REDIS_DISABLED`), the drop-in is inert |
+| `REDIS_HOST` | [Redis Object Cache](https://wordpress.org/plugins/redis-cache/) (free, shipped by default) via `WP_REDIS_*` constants |
+| `REDIS_HOST` + `REDIS_TOKEN` | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG` (`REDIS_TOKEN` is the license token) |
+
+Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to the `WP_HOME` host). Any Redis-compatible server works (Redis, Valkey, managed services).
+
+The production image copies the matching `object-cache.php` drop-in at build time. To use Object Cache Pro, add its private Composer repository and package (`rhubarbgroup/object-cache-pro`), then remove `wpackagist-plugin/redis-cache`.
+
+With the Helm chart, `valkey.enabled: true` sets `REDIS_HOST`, and `valkey.token` additionally sets `REDIS_TOKEN`.
+
 ## Code Style
 
 ### PHP

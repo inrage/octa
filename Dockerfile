@@ -41,3 +41,7 @@ USER root
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf;
 
 USER inr
+
+RUN for dropin in public/content/plugins/object-cache-pro/stubs/object-cache.php public/content/plugins/redis-cache/includes/object-cache.php; do \
+      if [ -f "$dropin" ]; then cp "$dropin" public/content/object-cache.php; break; fi; \
+    done
