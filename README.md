@@ -195,9 +195,9 @@ A persistent object cache is optional and driven by environment variables in `be
 |-------------|--------|
 | no `REDIS_HOST` | Object cache disabled (`WP_REDIS_DISABLED`), the drop-in is inert |
 | `REDIS_HOST` | [Redis Object Cache](https://wordpress.org/plugins/redis-cache/) (free, shipped by default) via `WP_REDIS_*` constants |
-| `REDIS_HOST` + `REDIS_TOKEN`, Object Cache Pro installed | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG` (`REDIS_TOKEN` is the license token) |
+| `REDIS_HOST`, Object Cache Pro installed | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG`, licensed with `REDIS_TOKEN` |
 
-Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to the `WP_HOME` host), `REDIS_SCHEME`. Any Redis-compatible server works (Redis, Valkey, managed services).
+Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to `WP_HOME` without its scheme), `REDIS_SCHEME`. Any Redis-compatible server works (Redis, Valkey, managed services).
 
 - Set `REDIS_SCHEME=tls` when the server is reached over an untrusted network (managed Redis, another host), so the password and cached data are not sent in clear text. The certificate is verified against the system CA store.
 - Give each site its own Redis database or instance. With Redis Object Cache, a cache flush empties the whole database regardless of `REDIS_PREFIX`; set the `WP_REDIS_SELECTIVE_FLUSH=true` environment variable if several sites must share one database.
@@ -262,13 +262,16 @@ MariaDB data lives in the named volume `<PROJECT_NAME>_db-data` and survives `do
 Stacks created before this volume existed kept their data in an anonymous volume, so the database starts empty after updating. To move the data over, before starting the stack:
 
 ```bash
-OLD=$(docker inspect "${PROJECT_NAME}_database" --format '{{range .Mounts}}{{if eq .Destination "/var/lib/mysql"}}{{.Name}}{{end}}{{end}}')
+MOUNT='{{range .Mounts}}{{if eq .Destination "/var/lib/mysql"}}{{.Name}}{{end}}{{end}}'
+OLD=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT")
 docker compose up --no-start database
-docker run --rm -v "$OLD":/from:ro -v "${PROJECT_NAME}_db-data":/to alpine cp -a /from/. /to/
-docker compose up -d
+NEW=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT")
+[ -n "$OLD" ] && [ "$OLD" != "$NEW" ] \
+  && docker run --rm -v "$OLD":/from:ro -v "$NEW":/to alpine cp -a /from/. /to/ \
+  && docker compose up -d
 ```
 
-Run it with `PROJECT_NAME` exported (`set -a; . ./.env; set +a`). If the old container was already removed, `OLD` is empty: pick the volume from `docker volume ls --filter dangling=true` instead. The old volume is left untouched; remove it with `docker volume rm "$OLD"` once the site works.
+Run it with `PROJECT_NAME` exported (`set -a; . ./.env; set +a`). `docker compose up --no-start` recreates the database container on the new volume without starting MariaDB, and the stack only starts once the copy succeeds. If the old container was already removed, `OLD` is empty: pick the volume from `docker volume ls --filter dangling=true` instead. The old volume is left untouched; remove it with `docker volume rm "$OLD"` once the site works.
 
 ## CI/CD
 
