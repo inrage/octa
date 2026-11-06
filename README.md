@@ -195,7 +195,7 @@ A persistent object cache is optional and driven by environment variables in `be
 |-------------|--------|
 | no `REDIS_HOST` | Object cache disabled (`WP_REDIS_DISABLED`), the drop-in is inert |
 | `REDIS_HOST` | [Redis Object Cache](https://wordpress.org/plugins/redis-cache/) (free, shipped by default) via `WP_REDIS_*` constants |
-| `REDIS_HOST` + `REDIS_TOKEN` | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG` (`REDIS_TOKEN` is the license token) |
+| `REDIS_HOST` + `REDIS_TOKEN`, Object Cache Pro installed | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG` (`REDIS_TOKEN` is the license token) |
 
 Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to the `WP_HOME` host), `REDIS_SCHEME`. Any Redis-compatible server works (Redis, Valkey, managed services).
 
@@ -286,6 +286,8 @@ The `Dockerfile` provides a multi-stage production build:
 3. Final image based on `inrage/docker-wordpress:8.4-redis`
 
 A Helm chart is available in `helm/` for Kubernetes deployments.
+
+`.env` files are never copied into the image: configure the container with environment variables. Set `AUTH_KEY`…`NONCE_SALT` to keep sessions stable across deployments; without them WordPress generates salts and stores them in the database. With the Helm chart, set `app.tablePrefix` when the database does not use the default `wp_` prefix.
 
 ## License
 

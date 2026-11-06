@@ -53,6 +53,13 @@ spec:
                 configMapKeyRef:
                   name: {{ include "helm.fullname" . }}
                   key: wp-siteurl
+            {{- if .Values.app.tablePrefix }}
+            - name: DB_PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: db-prefix
+            {{- end }}
             - name: APACHE_VHOST_DIR
               valueFrom:
                 configMapKeyRef:

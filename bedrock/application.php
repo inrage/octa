@@ -164,7 +164,7 @@ if (env('REDIS_HOST')) {
         'password' => env('REDIS_PASSWORD'),
     ], fn ($value) => $value !== null);
 
-    if (env('REDIS_TOKEN')) {
+    if (env('REDIS_TOKEN') && is_dir($webroot_dir . '/content/plugins/object-cache-pro')) {
         Config::define('WP_REDIS_CONFIG', [
             'token' => env('REDIS_TOKEN'),
             ...$redis,
