@@ -6,8 +6,8 @@ FROM composer:2.8 AS php-deps
 # Node dependencies
 FROM base-node AS node-deps
 WORKDIR /app
-RUN corepack enable && corepack prepare pnpm@10 --activate
-COPY package.json pnpm-lock.yaml .pnpmfile.cjs ./
+RUN corepack enable
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --public-hoist-pattern=\* --frozen-lockfile
 
 # Node build
@@ -41,3 +41,7 @@ USER root
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf;
 
 USER inr
+
+RUN for dropin in public/content/plugins/object-cache-pro/stubs/object-cache.php public/content/plugins/redis-cache/includes/object-cache.php; do \
+      if [ -f "$dropin" ]; then cp "$dropin" public/content/object-cache.php; break; fi; \
+    done

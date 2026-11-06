@@ -154,6 +154,35 @@ Config::define('CONCATENATE_SCRIPTS', false);
 // Set the default theme to octa
 Config::define('WP_DEFAULT_THEME', 'octa');
 
+if (env('REDIS_HOST')) {
+    $redis = array_filter([
+        'scheme' => env('REDIS_SCHEME'),
+        'host' => env('REDIS_HOST'),
+        'port' => env('REDIS_PORT') ?: 6379,
+        'database' => env('REDIS_DB') ?: 0,
+        'prefix' => env('REDIS_PREFIX') ?: preg_replace('#^\w+://#', '', rtrim(env('WP_HOME'), '/')) . ':',
+        'password' => env('REDIS_PASSWORD'),
+    ], fn ($value) => $value !== null);
+
+    if (is_dir($webroot_dir . '/content/plugins/object-cache-pro')) {
+        Config::define('WP_REDIS_CONFIG', [
+            'token' => env('REDIS_TOKEN'),
+            ...$redis,
+            'maxttl' => 86400 * 7,
+            'timeout' => 1.0,
+            'read_timeout' => 1.0,
+            'serializer' => function_exists('igbinary_serialize') ? 'igbinary' : 'php',
+            'compression' => function_exists('zstd_compress') ? 'zstd' : 'none',
+        ]);
+    } else {
+        foreach ($redis as $key => $value) {
+            Config::define('WP_REDIS_' . strtoupper($key), $value);
+        }
+    }
+} else {
+    Config::define('WP_REDIS_DISABLED', true);
+}
+
 /**
  * Debugging Settings
  */

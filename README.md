@@ -95,15 +95,15 @@ Starts the Vite dev server with HMR.
 
 ```
 app/
-├── Providers/              # Service providers (assets, blocks, theme)
+├── Providers/              # Service providers (assets, theme)
 └── View/
     └── Composers/          # Blade view composers
 bedrock/
 ├── application.php         # WordPress bootstrap & config
 └── environments/           # Per-environment overrides (development, staging)
-config/                     # Acorn config (theme, ACF, mail, prettify…)
+config/                     # Acorn config (theme, mail, prettify, post types…)
 resources/
-├── css/                    # Tailwind CSS (app, editor, blocks/)
+├── css/                    # Tailwind CSS (app, editor, common)
 ├── js/                     # TypeScript (app, editor)
 ├── views/                  # Blade templates
 ├── fonts/
@@ -167,9 +167,17 @@ Theme supports, menus, and image sizes are configured in `config/theme.php` and 
 
 ### Blocks
 
-Block-specific CSS goes in `resources/css/blocks/` and is dynamically enqueued by `BlockAssetsServiceProvider`.
+Theme tokens (`@theme`) and styles shared by the front end and the block editor live in `resources/css/common.css`, imported by both `app.css` and `editor.css`. Put block styles there (or in files it imports) so the editor matches the front end.
 
 Custom editor blocks, formats, variations, and plugins are registered from `resources/js/editor/`.
+
+### Post Types & Taxonomies
+
+Declare custom post types and taxonomies in `config/post-types.php`. They are registered by [Acorn Post Types](https://github.com/roots/acorn-post-types) with [Extended CPTs](https://github.com/johnbillion/extended-cpts), so every Extended CPTs argument is available.
+
+### Blade Components
+
+Anonymous components live in `resources/views/components/`. `<x-button>` renders a link when given an `href`, a `<button type="button">` otherwise, and accepts `variant` (`primary`, `outline`) and `size` (`sm`, `base`, `lg`).
 
 ### Environment Config
 
@@ -178,6 +186,49 @@ Environment variables are loaded from `.env` (and `.env.local` override) via Dot
 ### WordPress Plugins
 
 All plugins are managed via Composer (`wpackagist-plugin/*`) and installed to `public/content/plugins/`. Never install plugins manually.
+
+### Object Cache
+
+A persistent object cache is optional and driven by environment variables in `bedrock/application.php`:
+
+| Environment | Result |
+|-------------|--------|
+| no `REDIS_HOST` | Object cache disabled (`WP_REDIS_DISABLED`), the drop-in is inert |
+| `REDIS_HOST` | [Redis Object Cache](https://wordpress.org/plugins/redis-cache/) (free, shipped by default) via `WP_REDIS_*` constants |
+| `REDIS_HOST`, Object Cache Pro installed | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG`, licensed with `REDIS_TOKEN` |
+
+Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to `WP_HOME` without its scheme), `REDIS_SCHEME`. Any Redis-compatible server works (Redis, Valkey, managed services).
+
+- Set `REDIS_SCHEME=tls` when the server is reached over an untrusted network (managed Redis, another host), so the password and cached data are not sent in clear text. The certificate is verified against the system CA store.
+- Give each site its own Redis database or instance. With Redis Object Cache, a cache flush empties the whole database regardless of `REDIS_PREFIX`; set the `WP_REDIS_SELECTIVE_FLUSH=true` environment variable if several sites must share one database.
+
+The production image copies the matching `object-cache.php` drop-in at build time. To use Object Cache Pro, add its private Composer repository and package (`rhubarbgroup/object-cache-pro`), then remove `wpackagist-plugin/redis-cache`.
+
+With the Helm chart, `valkey.enabled: true` sets `REDIS_HOST`, and `valkey.token` additionally sets `REDIS_TOKEN`.
+
+### Custom Fields (optional)
+
+Octa ships without a custom fields plugin so it installs without any license. [ACF Composer](https://github.com/Log1x/acf-composer) lets you declare fields, blocks and options pages as PHP classes (`app/Fields`, `app/Blocks`, `app/Options`). It needs one of:
+
+**ACF Pro** (paid, full support)
+
+```bash
+composer config repositories.acf composer https://connect.advancedcustomfields.com
+composer config --auth http-basic.connect.advancedcustomfields.com <license-key> <site-url>
+composer require wpengine/advanced-custom-fields-pro log1x/acf-composer
+wp acorn vendor:publish --tag="acf-composer"
+```
+
+`composer config --auth` writes `auth.json` (git-ignored). In CI, store its content in a `COMPOSER_AUTH_JSON` secret and uncomment the matching step in `.github/workflows/ci.yml`. The `Dockerfile` already mounts it as a build secret.
+
+**Secure Custom Fields** (free, [wordpress.org](https://wordpress.org/plugins/secure-custom-fields/))
+
+```bash
+composer require wpackagist-plugin/secure-custom-fields log1x/acf-composer
+wp acorn vendor:publish --tag="acf-composer"
+```
+
+Fields and options pages work. ACF Composer blocks do not render with SCF yet ([Log1x/acf-composer#367](https://github.com/Log1x/acf-composer/pull/367)).
 
 ## Code Style
 
@@ -206,6 +257,27 @@ PSR-12 enforced by [Laravel Pint](https://laravel.com/docs/pint) — see `pint.j
 | frontend | wodby/nginx | 8000 |
 | mailer | mailpit | 1025 / 8025 |
 
+MariaDB data lives in the named volume `db-data`, prefixed with the Compose project name (the directory name by default), and survives `docker compose down`.
+
+Stacks created before this volume existed kept their data in an anonymous volume, so the database starts empty after updating. To move the data over, before starting the stack, first record the old volume:
+
+```bash
+MOUNT='{{range .Mounts}}{{if eq .Destination "/var/lib/mysql"}}{{.Name}}{{end}}{{end}}'
+OLD=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT") && echo "Old volume: $OLD"
+```
+
+Then recreate the database container on the new volume, copy the data and start the stack:
+
+```bash
+[ -n "$OLD" ] && docker compose up --no-start database \
+  && NEW=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT") \
+  && [ -n "$NEW" ] && [ "$OLD" != "$NEW" ] \
+  && docker run --rm -v "$OLD":/from:ro -v "$NEW":/to alpine cp -a /from/. /to/ \
+  && docker compose up -d
+```
+
+Run both with `PROJECT_NAME` exported (`set -a; . ./.env; set +a`). `docker compose up --no-start` creates the container without starting MariaDB, and the stack only starts once the copy succeeds. Keep the printed volume name: to retry, or if the old container was already removed (pick it from `docker volume ls --filter dangling=true`), set `OLD=<volume>` and run the second block again. The old volume is left untouched; remove it with `docker volume rm "$OLD"` once the site works.
+
 ## CI/CD
 
 GitHub Actions runs on every PR and push to `main`:
@@ -222,6 +294,8 @@ The `Dockerfile` provides a multi-stage production build:
 3. Final image based on `inrage/docker-wordpress:8.4-redis`
 
 A Helm chart is available in `helm/` for Kubernetes deployments.
+
+`.env` files are never copied into the image: configure the container with environment variables. Set `AUTH_KEY`…`NONCE_SALT` to keep sessions stable across deployments; without them WordPress generates salts and stores them in the database. With the Helm chart, set `app.tablePrefix` when the database does not use the default `wp_` prefix.
 
 ## License
 

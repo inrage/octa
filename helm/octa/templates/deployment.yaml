@@ -11,10 +11,12 @@ spec:
       {{- include "helm.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- end }}
       labels:
         {{- include "helm.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
@@ -53,6 +55,13 @@ spec:
                 configMapKeyRef:
                   name: {{ include "helm.fullname" . }}
                   key: wp-siteurl
+            {{- if .Values.app.tablePrefix }}
+            - name: DB_PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "helm.fullname" . }}
+                  key: db-prefix
+            {{- end }}
             - name: APACHE_VHOST_DIR
               valueFrom:
                 configMapKeyRef:

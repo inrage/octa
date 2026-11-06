@@ -10,9 +10,8 @@ services:
       MYSQL_PASSWORD: $DB_PASSWORD
     networks:
       - internal_network
-    #volumes:
-    # - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-    # - /path/to/mariadb/data/on/host:/var/lib/mysql # I want to manage volumes manually.
+    volumes:
+      - db-data:/var/lib/mysql
   wordpress:
     image: wodby/wordpress-php:8.4-dev-macos
     container_name: ${PROJECT_NAME}_wordpress
@@ -50,4 +49,7 @@ networks:
   internal_network:
   proxy:
     external: true
+
+volumes:
+  db-data:
 

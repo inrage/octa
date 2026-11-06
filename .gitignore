@@ -11,6 +11,9 @@ public/content/uploads/*
 public/content/cache/*
 public/wp
 public/content/debug.log
+public/content/object-cache.php
+public/content/advanced-cache.php
+public/content/db.php
 
 # Dotenv
 .env.*
