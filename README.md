@@ -101,7 +101,7 @@ app/
 bedrock/
 ├── application.php         # WordPress bootstrap & config
 └── environments/           # Per-environment overrides (development, staging)
-config/                     # Acorn config (theme, ACF, mail, prettify…)
+config/                     # Acorn config (theme, mail, prettify, post types…)
 resources/
 ├── css/                    # Tailwind CSS (app, editor, blocks/)
 ├── js/                     # TypeScript (app, editor)
@@ -194,6 +194,30 @@ Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `RE
 The production image copies the matching `object-cache.php` drop-in at build time. To use Object Cache Pro, add its private Composer repository and package (`rhubarbgroup/object-cache-pro`), then remove `wpackagist-plugin/redis-cache`.
 
 With the Helm chart, `valkey.enabled: true` sets `REDIS_HOST`, and `valkey.token` additionally sets `REDIS_TOKEN`.
+
+### Custom Fields (optional)
+
+Octa ships without a custom fields plugin so it installs without any license. [ACF Composer](https://github.com/Log1x/acf-composer) lets you declare fields, blocks and options pages as PHP classes (`app/Fields`, `app/Blocks`, `app/Options`). It needs one of:
+
+**ACF Pro** (paid, full support)
+
+```bash
+composer config repositories.acf composer https://connect.advancedcustomfields.com
+composer config --auth http-basic.connect.advancedcustomfields.com <license-key> <site-url>
+composer require wpengine/advanced-custom-fields-pro log1x/acf-composer
+wp acorn vendor:publish --tag="acf-composer"
+```
+
+`composer config --auth` writes `auth.json` (git-ignored). In CI, store its content in a `COMPOSER_AUTH_JSON` secret and uncomment the matching step in `.github/workflows/ci.yml`. The `Dockerfile` already mounts it as a build secret.
+
+**Secure Custom Fields** (free, [wordpress.org](https://wordpress.org/plugins/secure-custom-fields/))
+
+```bash
+composer require wpackagist-plugin/secure-custom-fields log1x/acf-composer
+wp acorn vendor:publish --tag="acf-composer"
+```
+
+Fields and options pages work. ACF Composer blocks do not render with SCF yet ([Log1x/acf-composer#367](https://github.com/Log1x/acf-composer/pull/367)).
 
 ## Code Style
 
