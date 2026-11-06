@@ -15,3 +15,11 @@ storage/logs/*.log
 auth.json
 tasks
 .gstack
+public/hot
+public/content/cache
+.env
+.env.*
+compose*.yaml
+compose*.yml
+*.log
+.DS_Store
