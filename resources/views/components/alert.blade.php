@@ -1,15 +1,7 @@
 @props([
-    'type' => null,
     'message' => null,
 ])
 
-@php($class = match ($type) {
-    'success' => 'bg-indigo-50',
-    'caution' => 'bg-indigo-50',
-    'warning' => 'bg-indigo-50',
-    default => 'bg-indigo-50',
-})
-
-<div {{ $attributes->merge(['class' => "px-2 py-1 {$class}"]) }}>
-    {!! $message ?? $slot !!}
+<div {{ $attributes->merge(['class' => 'border-l-4 border-current bg-black/5 px-4 py-3']) }}>
+    {{ $message ?? $slot }}
 </div>
