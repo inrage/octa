@@ -197,7 +197,10 @@ A persistent object cache is optional and driven by environment variables in `be
 | `REDIS_HOST` | [Redis Object Cache](https://wordpress.org/plugins/redis-cache/) (free, shipped by default) via `WP_REDIS_*` constants |
 | `REDIS_HOST` + `REDIS_TOKEN` | [Object Cache Pro](https://objectcache.pro) via `WP_REDIS_CONFIG` (`REDIS_TOKEN` is the license token) |
 
-Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to the `WP_HOME` host). Any Redis-compatible server works (Redis, Valkey, managed services).
+Optional variables: `REDIS_PORT` (default `6379`), `REDIS_DB` (default `0`), `REDIS_PASSWORD`, `REDIS_PREFIX` (defaults to the `WP_HOME` host), `REDIS_SCHEME`. Any Redis-compatible server works (Redis, Valkey, managed services).
+
+- Set `REDIS_SCHEME=tls` when the server is reached over an untrusted network (managed Redis, another host), so the password and cached data are not sent in clear text. The certificate is verified against the system CA store.
+- Give each site its own Redis database or instance. With Redis Object Cache, a cache flush empties the whole database regardless of `REDIS_PREFIX`; set the `WP_REDIS_SELECTIVE_FLUSH=true` environment variable if several sites must share one database.
 
 The production image copies the matching `object-cache.php` drop-in at build time. To use Object Cache Pro, add its private Composer repository and package (`rhubarbgroup/object-cache-pro`), then remove `wpackagist-plugin/redis-cache`.
 
@@ -253,6 +256,19 @@ PSR-12 enforced by [Laravel Pint](https://laravel.com/docs/pint) — see `pint.j
 | wordpress | wodby/wordpress-php:8.4 | — |
 | frontend | wodby/nginx | 8000 |
 | mailer | mailpit | 1025 / 8025 |
+
+MariaDB data lives in the named volume `<PROJECT_NAME>_db-data` and survives `docker compose down`.
+
+Stacks created before this volume existed kept their data in an anonymous volume, so the database starts empty after updating. To move the data over, before starting the stack:
+
+```bash
+OLD=$(docker inspect "${PROJECT_NAME}_database" --format '{{range .Mounts}}{{if eq .Destination "/var/lib/mysql"}}{{.Name}}{{end}}{{end}}')
+docker compose up --no-start database
+docker run --rm -v "$OLD":/from:ro -v "${PROJECT_NAME}_db-data":/to alpine cp -a /from/. /to/
+docker compose up -d
+```
+
+Run it with `PROJECT_NAME` exported (`set -a; . ./.env; set +a`). If the old container was already removed, `OLD` is empty: pick the volume from `docker volume ls --filter dangling=true` instead. The old volume is left untouched; remove it with `docker volume rm "$OLD"` once the site works.
 
 ## CI/CD
 

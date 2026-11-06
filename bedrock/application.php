@@ -155,13 +155,14 @@ Config::define('CONCATENATE_SCRIPTS', false);
 Config::define('WP_DEFAULT_THEME', 'octa');
 
 if (env('REDIS_HOST')) {
-    $redis = [
+    $redis = array_filter([
+        'scheme' => env('REDIS_SCHEME'),
         'host' => env('REDIS_HOST'),
         'port' => env('REDIS_PORT') ?: 6379,
         'database' => env('REDIS_DB') ?: 0,
         'prefix' => env('REDIS_PREFIX') ?: parse_url(env('WP_HOME'), PHP_URL_HOST) . ':',
         'password' => env('REDIS_PASSWORD'),
-    ];
+    ], fn ($value) => $value !== null);
 
     if (env('REDIS_TOKEN')) {
         Config::define('WP_REDIS_CONFIG', [
@@ -175,9 +176,7 @@ if (env('REDIS_HOST')) {
         ]);
     } else {
         foreach ($redis as $key => $value) {
-            if ($value !== null) {
-                Config::define('WP_REDIS_' . strtoupper($key), $value);
-            }
+            Config::define('WP_REDIS_' . strtoupper($key), $value);
         }
     }
 } else {

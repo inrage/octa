@@ -16,8 +16,8 @@
     },
 ]))
 
-@if ($attributes->has('href'))
+@if ($attributes->has('href') && ! $attributes->get('disabled'))
     <a {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</a>
 @else
-    <button {{ $attributes->merge(['type' => 'button', 'class' => $classes]) }}>{{ $slot }}</button>
+    <button {{ $attributes->except('href')->merge(['type' => 'button', 'class' => $classes]) }}>{{ $slot }}</button>
 @endif
