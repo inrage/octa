@@ -257,21 +257,26 @@ PSR-12 enforced by [Laravel Pint](https://laravel.com/docs/pint) — see `pint.j
 | frontend | wodby/nginx | 8000 |
 | mailer | mailpit | 1025 / 8025 |
 
-MariaDB data lives in the named volume `<PROJECT_NAME>_db-data` and survives `docker compose down`.
+MariaDB data lives in the named volume `db-data`, prefixed with the Compose project name (the directory name by default), and survives `docker compose down`.
 
-Stacks created before this volume existed kept their data in an anonymous volume, so the database starts empty after updating. To move the data over, before starting the stack:
+Stacks created before this volume existed kept their data in an anonymous volume, so the database starts empty after updating. To move the data over, before starting the stack, first record the old volume:
 
 ```bash
 MOUNT='{{range .Mounts}}{{if eq .Destination "/var/lib/mysql"}}{{.Name}}{{end}}{{end}}'
-OLD=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT")
-docker compose up --no-start database
-NEW=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT")
-[ -n "$OLD" ] && [ "$OLD" != "$NEW" ] \
+OLD=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT") && echo "Old volume: $OLD"
+```
+
+Then recreate the database container on the new volume, copy the data and start the stack:
+
+```bash
+[ -n "$OLD" ] && docker compose up --no-start database \
+  && NEW=$(docker inspect "${PROJECT_NAME}_database" --format "$MOUNT") \
+  && [ -n "$NEW" ] && [ "$OLD" != "$NEW" ] \
   && docker run --rm -v "$OLD":/from:ro -v "$NEW":/to alpine cp -a /from/. /to/ \
   && docker compose up -d
 ```
 
-Run it with `PROJECT_NAME` exported (`set -a; . ./.env; set +a`). `docker compose up --no-start` recreates the database container on the new volume without starting MariaDB, and the stack only starts once the copy succeeds. If the old container was already removed, `OLD` is empty: pick the volume from `docker volume ls --filter dangling=true` instead. The old volume is left untouched; remove it with `docker volume rm "$OLD"` once the site works.
+Run both with `PROJECT_NAME` exported (`set -a; . ./.env; set +a`). `docker compose up --no-start` creates the container without starting MariaDB, and the stack only starts once the copy succeeds. Keep the printed volume name: to retry, or if the old container was already removed (pick it from `docker volume ls --filter dangling=true`), set `OLD=<volume>` and run the second block again. The old volume is left untouched; remove it with `docker volume rm "$OLD"` once the site works.
 
 ## CI/CD
 
