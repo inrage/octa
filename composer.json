@@ -81,7 +81,6 @@
         "acorn": {
             "providers": [
                 "App\\Providers\\AssetsServiceProvider",
-                "App\\Providers\\BlockAssetsServiceProvider",
                 "App\\Providers\\ThemeServiceProvider"
             ]
         },

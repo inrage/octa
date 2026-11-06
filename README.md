@@ -95,7 +95,7 @@ Starts the Vite dev server with HMR.
 
 ```
 app/
-├── Providers/              # Service providers (assets, blocks, theme)
+├── Providers/              # Service providers (assets, theme)
 └── View/
     └── Composers/          # Blade view composers
 bedrock/
@@ -103,7 +103,7 @@ bedrock/
 └── environments/           # Per-environment overrides (development, staging)
 config/                     # Acorn config (theme, mail, prettify, post types…)
 resources/
-├── css/                    # Tailwind CSS (app, editor, blocks/)
+├── css/                    # Tailwind CSS (app, editor, common)
 ├── js/                     # TypeScript (app, editor)
 ├── views/                  # Blade templates
 ├── fonts/
@@ -167,7 +167,7 @@ Theme supports, menus, and image sizes are configured in `config/theme.php` and 
 
 ### Blocks
 
-Block-specific CSS goes in `resources/css/blocks/` and is dynamically enqueued by `BlockAssetsServiceProvider`.
+Theme tokens (`@theme`) and styles shared by the front end and the block editor live in `resources/css/common.css`, imported by both `app.css` and `editor.css`. Put block styles there (or in files it imports) so the editor matches the front end.
 
 Custom editor blocks, formats, variations, and plugins are registered from `resources/js/editor/`.
 
