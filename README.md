@@ -171,6 +171,14 @@ Theme tokens (`@theme`) and styles shared by the front end and the block editor 
 
 Custom editor blocks, formats, variations, and plugins are registered from `resources/js/editor/`.
 
+### Post Types & Taxonomies
+
+Declare custom post types and taxonomies in `config/post-types.php`. They are registered by [Acorn Post Types](https://github.com/roots/acorn-post-types) with [Extended CPTs](https://github.com/johnbillion/extended-cpts), so every Extended CPTs argument is available.
+
+### Blade Components
+
+Anonymous components live in `resources/views/components/`. `<x-button>` renders a link when given an `href`, a `<button type="button">` otherwise, and accepts `variant` (`primary`, `outline`) and `size` (`sm`, `base`, `lg`).
+
 ### Environment Config
 
 Environment variables are loaded from `.env` (and `.env.local` override) via Dotenv in `bedrock/application.php`. Per-environment overrides live in `bedrock/environments/`.

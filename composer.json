@@ -49,6 +49,7 @@
         "log1x/acorn-disable-media-pages": "^1.0",
         "oscarotero/env": "^2.1",
         "roots/acorn": "^6.2",
+        "roots/acorn-post-types": "^1.0",
         "roots/acorn-prettify": "^1.0",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
